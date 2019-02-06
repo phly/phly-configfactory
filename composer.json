@@ -1,0 +1,51 @@
+{
+    "name": "phly/phly-expressive-configfactory",
+    "description": "Factory for pulling nested configuration arrays from the config service",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "expressive",
+        "config",
+        "psr-11"
+    ],
+    "support": {
+        "issues": "https://github.com/phly/phly-expressive-configfactory/issues",
+        "source": "https://github.com/phly/phly-expressive-configfactory",
+        "rss": "https://github.com/phly/phly-expressive-configfactory/releases.atom"
+    },
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.1.1",
+        "webimpress/coding-standard": "dev-master@dev",
+        "zendframework/zend-coding-standard": "~2.0.0@alpha"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phly\\Expressive\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhlyTest\\Expressive\\": "test/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    }
+}

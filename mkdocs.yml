@@ -1,0 +1,9 @@
+docs_dir: docs/book
+site_dir: docs/html
+pages:
+    - index.md
+    - Introduction: intro.md
+site_name: phly/phly-expressive-configfactory
+site_description: 'Factory for pulling nested configuration arrays from the config service'
+repo_url: 'https://github.com/phly/phly-expressive-configfactory'
+copyright: 'Copyright (c) 2019 <a href="https://mwop.net/">Matthew Weier O\'Phinney</a>'
