@@ -1,3 +1,0 @@
-# phly-expressive-configfactory
-
-This component provides ...
