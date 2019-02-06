@@ -63,7 +63,7 @@ class ConfigFactoryTest extends TestCase
     public function testSerializationRetainsUnfoundKeyBehavior(bool $unfoundKeyState)
     {
         $this->fileName = tempnam(sys_get_temp_dir(), 'pecf');
-        $factory = new ConfigFactory($unfoundKeyState);
+        $factory        = new ConfigFactory($unfoundKeyState);
 
         file_put_contents($this->fileName, sprintf("<?php\nreturn %s;", var_export($factory, true)));
         $deserialized = include $this->fileName;
