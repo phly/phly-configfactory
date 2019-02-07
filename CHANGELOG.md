@@ -2,11 +2,12 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.0.1 - TBD
+## 1.1.0 - 2019-02-07
 
 ### Added
 
-- Nothing.
+- [#1](https://github.com/phly/phly-expressive-configfactory/pull/1) adds `ConfigAbstractFactory`, a zend-servicemanager abstract factory for
+  auto-wiring configuration services.
 
 ### Changed
 
