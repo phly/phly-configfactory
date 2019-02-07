@@ -9,8 +9,11 @@ declare(strict_types=1);
 
 namespace Phly\Expressive;
 
+use ArrayObject;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\AbstractFactoryInterface;
+
+use function preg_match;
 
 class ConfigAbstractFactory implements AbstractFactoryInterface
 {
@@ -20,11 +23,11 @@ class ConfigAbstractFactory implements AbstractFactoryInterface
     }
 
     /**
-     * @return array|\ArrayObject
+     * @return array|ArrayObject
      * @throws InvalidServiceNameException if $serviceName does not begin with "config-"
      * @throws ConfigKeyNotFoundException if $returnArrayForUnfoundKey is false and the key is not found
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         return $this->getRequestedConfig($container, $requestedName);
     }

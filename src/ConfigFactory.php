@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Phly\Expressive;
 
+use ArrayObject;
 use Psr\Container\ContainerInterface;
 
 class ConfigFactory
@@ -16,7 +17,7 @@ class ConfigFactory
     use GetRequestedConfigTrait;
 
     /**
-     * @return array|\ArrayObject
+     * @return array|ArrayObject
      * @throws InvalidServiceNameException if $serviceName does not begin with "config-"
      * @throws ConfigKeyNotFoundException if $returnArrayForUnfoundKey is false and the key is not found
      */

@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Phly\Expressive;
 
+use ArrayObject;
 use Psr\Container\ContainerInterface;
 
 use function array_key_exists;
@@ -34,7 +35,7 @@ trait GetRequestedConfigTrait
     }
 
     /**
-     * @return array|\ArrayObject
+     * @return array|ArrayObject
      * @throws InvalidServiceNameException if $serviceName does not begin with "config-"
      * @throws ConfigKeyNotFoundException if $returnArrayForUnfoundKey is false and the key is not found
      */
@@ -52,7 +53,7 @@ trait GetRequestedConfigTrait
     }
 
     /**
-     * @return array|\ArrayObject
+     * @return array|ArrayObject
      * @throws ConfigKeyNotFoundException if $returnArrayForUnfoundKey is false and the key is not found
      */
     private function getConfigForKeys(array $config, array $keys, array $parentKeys = [])
