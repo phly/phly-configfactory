@@ -19,7 +19,11 @@
     "require-dev": {
         "phpunit/phpunit": "^7.1.1",
         "webimpress/coding-standard": "dev-master@dev",
-        "zendframework/zend-coding-standard": "~2.0.0@alpha"
+        "zendframework/zend-coding-standard": "~2.0.0@alpha",
+        "zendframework/zend-servicemanager": "^3.4"
+    },
+    "suggest": {
+        "zendframework/zend-servicemanager": "Install zend-servicemanager to use the ConfigAbstractFactory"
     },
     "autoload": {
         "psr-4": {
