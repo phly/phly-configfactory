@@ -90,6 +90,32 @@ class BlogCacheFactory
 }
 ```
 
+### Abstract Factory
+
+> Since 1.1.0
+
+If you are using [zend-servicemanager](https://docs.zendframework.com/zend-servicemanager),
+you can use the class `Phly\Expressive\ConfigAbstractFactory` as an abstract
+factory. This allows you to omit adding a factory entry for every configuration
+segment you want to retrieve. Instead, you can add the following:
+
+```php
+return [
+    'dependencies' => [
+        'abstract_factories' => [
+            \Phly\Expressive\ConfigAbstractFactory::class,
+
+            // OR
+
+            new \Phly\Expressive\ConfigAbstractFactory(false),
+        ],
+    ],
+];
+```
+
+When present, it will handle any services with the prefix `config-`, and operate
+in the same way as the `ConfigFactory`.
+
 ### Caveats
 
 You should only specify keys that will return an array. Most containers only
