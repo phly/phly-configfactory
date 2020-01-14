@@ -17,6 +17,8 @@ use function preg_match;
 
 class ConfigAbstractFactory implements AbstractFactoryInterface
 {
+    use GetRequestedConfigTrait;
+
     public function canCreate(ContainerInterface $container, $requestedName) : bool
     {
         return (bool) preg_match('/^config-/i', $requestedName);
