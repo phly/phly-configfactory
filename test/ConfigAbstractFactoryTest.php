@@ -1,16 +1,16 @@
 <?php
 /**
- * @see       https://github.com/phly/phly-expressive-configfactory for the canonical source repository
+ * @see       https://github.com/phly/phly-configfactory for the canonical source repository
  * @copyright Copyright (c) Matthew Weier O'Phinney (https://mwop.net)
- * @license   https://github.com/phly/phly-expresive-configfactory/blob/master/LICENSE.md New BSD License
+ * @license   https://github.com/phly/phly-configfactory/blob/master/LICENSE.md New BSD License
  */
 
 declare(strict_types=1);
 
-namespace PhlyTest\Expressive;
+namespace PhlyTest\ConfigFactory;
 
 use Interop\Container\ContainerInterface;
-use Phly\Expressive\ConfigAbstractFactory;
+use Phly\ConfigFactory\ConfigAbstractFactory;
 use PHPUnit\Framework\TestCase;
 
 class ConfigAbstractFactoryTest extends TestCase

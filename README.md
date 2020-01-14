@@ -1,22 +1,25 @@
-# phly-expressive-configfactory
+# phly-configfactory
 
-[![Build Status](https://secure.travis-ci.org/phly/phly-expressive-configfactory.svg?branch=master)](https://secure.travis-ci.org/phly/phly-expressive-configfactory)
-[![Coverage Status](https://coveralls.io/repos/github/phly/phly-expressive-configfactory/badge.svg?branch=master)](https://coveralls.io/github/phly/phly-expressive-configfactory?branch=master)
+[![Build Status](https://secure.travis-ci.org/phly/phly-configfactory.svg?branch=master)](https://secure.travis-ci.org/phly/phly-configfactory)
+[![Coverage Status](https://coveralls.io/repos/github/phly/phly-configfactory/badge.svg?branch=master)](https://coveralls.io/github/phly/phly-configfactory?branch=master)
 
 This library provides a re-usable factory for pulling configuration from nested
 keys.
+
+> This library was previously released as [phly/phly-expressive-configfactory](https://github.com/phly/phly-expressive-configfactory).
+> This version is a fork, modified to support [Laminas](https://getlaminas.org).
 
 ## Installation
 
 Run the following to install this library:
 
 ```bash
-$ composer require phly/phly-expressive-configfactory
+$ composer require phly/phly-configfactory
 ```
 
 ## Usage
 
-Assign the factory `Phly\Expressive\ConfigFactory` to services named with the
+Assign the factory `Phly\ConfigFactory\ConfigFactory` to services named with the
 following structure:
 
 ```text
@@ -46,7 +49,7 @@ as follows:
 return [
     'dependencies' => [
         'factories' => [
-            'config-cache.adapters.blog' => \Phly\Expressive\ConfigFactory,
+            'config-cache.adapters.blog' => \Phly\ConfigFactory\ConfigFactory,
         ],
     ],
 ];
@@ -62,7 +65,7 @@ assign the factory as follows:
 return [
     'dependencies' => [
         'factories' => [
-            'config-cache.adapters.blog' => new \Phly\Expressive\ConfigFactory(false),
+            'config-cache.adapters.blog' => new \Phly\ConfigFactory\ConfigFactory(false),
         ],
     ],
 ];
@@ -92,10 +95,8 @@ class BlogCacheFactory
 
 ### Abstract Factory
 
-> Since 1.1.0
-
-If you are using [zend-servicemanager](https://docs.zendframework.com/zend-servicemanager),
-you can use the class `Phly\Expressive\ConfigAbstractFactory` as an abstract
+If you are using [laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager),
+you can use the class `Phly\ConfigFactory\ConfigAbstractFactory` as an abstract
 factory. This allows you to omit adding a factory entry for every configuration
 segment you want to retrieve. Instead, you can add the following:
 
@@ -103,11 +104,11 @@ segment you want to retrieve. Instead, you can add the following:
 return [
     'dependencies' => [
         'abstract_factories' => [
-            \Phly\Expressive\ConfigAbstractFactory::class,
+            \Phly\ConfigFactory\ConfigAbstractFactory::class,
 
             // OR
 
-            new \Phly\Expressive\ConfigAbstractFactory(false),
+            new \Phly\ConfigFactory\ConfigAbstractFactory(false),
         ],
     ],
 ];
@@ -120,9 +121,9 @@ in the same way as the `ConfigFactory`.
 
 You should only specify keys that will return an array. Most containers only
 allow returning an array or object from factories, and will raise an exception
-otherwise. For those requiring an object, Expressive generally casts to an
+otherwise. For those requiring an object, Mezzio generally casts to an
 `ArrayObject` instance, making this safe.
 
 ## Support
 
-* [Issues](https://github.com/zendframework/phly-expressive-configfactory/issues/)
+* [Issues](https://github.com/phly/phly-configfactory/issues/)
