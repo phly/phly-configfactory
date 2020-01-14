@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 > Previously released as phly/phly-expressive-configfactory.
 
-## 1.0.1 - TBD
+## 1.0.1 - 2020-01-14
 
 ### Added
 
@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [phly/phly-expressive-configfactory#2](https://github.com/phly/phly-expressive-configfactory/pull/2) adds a missing trait to the `ConfigAbstractFactory`.
 
 ## 1.0.0 - 2020-01-14
 
