@@ -1,8 +1,7 @@
 <?php
+
 /**
  * @see       https://github.com/phly/phly-configfactory for the canonical source repository
- * @copyright Copyright (c) Matthew Weier O'Phinney (https://mwop.net)
- * @license   https://github.com/phly/phly-configfactory/blob/master/LICENSE.md New BSD License
  */
 
 declare(strict_types=1);
@@ -24,7 +23,7 @@ trait GetRequestedConfigTrait
     /** @var bool */
     private $returnArrayForUnfoundKey;
 
-    public static function __set_state(array $properties) : self
+    public static function __set_state(array $properties): self
     {
         return new static($properties['returnArrayForUnfoundKey']);
     }
@@ -36,8 +35,8 @@ trait GetRequestedConfigTrait
 
     /**
      * @return array|ArrayObject
-     * @throws InvalidServiceNameException if $serviceName does not begin with "config-"
-     * @throws ConfigKeyNotFoundException if $returnArrayForUnfoundKey is false and the key is not found
+     * @throws InvalidServiceNameException If $serviceName does not begin with "config-".
+     * @throws ConfigKeyNotFoundException If $returnArrayForUnfoundKey is false and the key is not found.
      */
     private function getRequestedConfig(ContainerInterface $container, string $serviceName)
     {
@@ -54,7 +53,7 @@ trait GetRequestedConfigTrait
 
     /**
      * @return array|ArrayObject
-     * @throws ConfigKeyNotFoundException if $returnArrayForUnfoundKey is false and the key is not found
+     * @throws ConfigKeyNotFoundException If $returnArrayForUnfoundKey is false and the key is not found.
      */
     private function getConfigForKeys(array $config, array $keys, array $parentKeys = [])
     {

@@ -2,8 +2,6 @@
 
 /**
  * @see       https://github.com/phly/phly-configfactory for the canonical source repository
- * @copyright Copyright (c) Matthew Weier O'Phinney (https://mwop.net)
- * @license   https://github.com/phly/phly-configfactory/blob/master/LICENSE.md New BSD License
  */
 
 declare(strict_types=1);
@@ -30,6 +28,7 @@ class ConfigFactoryTest extends TestCase
     use DeprecatedAssertionsTrait;
     use ProphecyTrait;
 
+    /** @var string */
     protected $fileName;
 
     public function setUp(): void
