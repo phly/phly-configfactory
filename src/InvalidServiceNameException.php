@@ -1,8 +1,7 @@
 <?php
+
 /**
  * @see       https://github.com/phly/phly-configfactory for the canonical source repository
- * @copyright Copyright (c) Matthew Weier O'Phinney (https://mwop.net)
- * @license   https://github.com/phly/phly-configfactory/blob/master/LICENSE.md New BSD License
  */
 
 declare(strict_types=1);
@@ -16,7 +15,7 @@ use function sprintf;
 
 class InvalidServiceNameException extends RuntimeException implements ContainerExceptionInterface
 {
-    public static function forService(string $serviceName) : self
+    public static function forService(string $serviceName): self
     {
         return new self(sprintf(
             'Only services beginning with "config-" may be constructed via the %s; received %s',

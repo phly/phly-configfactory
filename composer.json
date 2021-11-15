@@ -14,15 +14,15 @@
         "rss": "https://github.com/phly/phly-configfactory/releases.atom"
     },
     "require": {
-        "php": "^7.1",
+        "php": "^7.3 || ~8.0.0 || ~8.1.0",
         "psr/container": "^1.0"
     },
     "require-dev": {
-        "laminas/laminas-dependency-plugin": "^1.0",
-        "phpunit/phpunit": "^7.1.1",
-        "webimpress/coding-standard": "dev-master@dev",
-        "laminas/laminas-coding-standard": "~2.0.0@alpha",
-        "laminas/laminas-servicemanager": "^3.4"
+        "laminas/laminas-coding-standard": "~2.3.0",
+        "laminas/laminas-dependency-plugin": "^2.1",
+        "laminas/laminas-servicemanager": "^3.4",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "phpunit/phpunit": "^9.5.5"
     },
     "suggest": {
         "laminas/laminas-servicemanager": "Install laminas-servicemanager to use the ConfigAbstractFactory"

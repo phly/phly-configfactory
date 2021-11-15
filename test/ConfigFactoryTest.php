@@ -1,8 +1,7 @@
 <?php
+
 /**
  * @see       https://github.com/phly/phly-configfactory for the canonical source repository
- * @copyright Copyright (c) Matthew Weier O'Phinney (https://mwop.net)
- * @license   https://github.com/phly/phly-configfactory/blob/master/LICENSE.md New BSD License
  */
 
 declare(strict_types=1);
@@ -13,6 +12,7 @@ use Phly\ConfigFactory\ConfigFactory;
 use Phly\ConfigFactory\ConfigKeyNotFoundException;
 use Phly\ConfigFactory\InvalidServiceNameException;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Container\ContainerInterface;
 
 use function file_exists;
@@ -25,15 +25,19 @@ use function var_export;
 
 class ConfigFactoryTest extends TestCase
 {
+    use DeprecatedAssertionsTrait;
+    use ProphecyTrait;
+
+    /** @var string */
     protected $fileName;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->container = $this->prophesize(ContainerInterface::class);
         $this->factory   = new ConfigFactory();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if ($this->fileName && file_exists($this->fileName)) {
             unlink($this->fileName);
@@ -51,7 +55,7 @@ class ConfigFactoryTest extends TestCase
         $this->assertAttributeSame(false, 'returnArrayForUnfoundKey', $factory);
     }
 
-    public function unfoundKeyStates() : iterable
+    public function unfoundKeyStates(): iterable
     {
         yield 'allowed' => [true];
         yield 'disallowed' => [false];
@@ -78,7 +82,7 @@ class ConfigFactoryTest extends TestCase
         ($this->factory)($this->container->reveal(), 'invalid-name');
     }
 
-    public function configurationWithoutKey() : iterable
+    public function configurationWithoutKey(): iterable
     {
         yield 'empty'            => [[]];
         yield 'first-level-only' => [['first' => []]];
