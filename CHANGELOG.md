@@ -4,11 +4,11 @@ All notable changes to this project will be documented in this file, in reverse 
 
 > Previously released as phly/phly-expressive-configfactory.
 
-## 1.0.2 - TBD
+## 1.1.0 - 2021-11-15
 
 ### Added
 
-- Nothing.
+- This release adds support for PHP 8.0 and 8.1.
 
 ### Changed
 
@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- This release removes support for PHP versions prior to 7.3.
 
 ### Fixed
 
