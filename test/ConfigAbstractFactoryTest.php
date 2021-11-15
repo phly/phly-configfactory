@@ -12,10 +12,13 @@ namespace PhlyTest\ConfigFactory;
 use Interop\Container\ContainerInterface;
 use Phly\ConfigFactory\ConfigAbstractFactory;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class ConfigAbstractFactoryTest extends TestCase
 {
-    public function setUp()
+    use ProphecyTrait;
+
+    public function setUp(): void
     {
         $this->container = $this->prophesize(ContainerInterface::class)->reveal();
         $this->factory   = new ConfigAbstractFactory();
