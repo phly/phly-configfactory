@@ -15,7 +15,8 @@ use Psr\Container\ContainerInterface;
 
 class ConfigAbstractFactoryTest extends TestCase
 {
-    private MockObject&ContainerInterface $container;
+    /** @var MockObject&ContainerInterface */
+    private $container;
     private ConfigAbstractFactory $factory;
 
     public function setUp(): void

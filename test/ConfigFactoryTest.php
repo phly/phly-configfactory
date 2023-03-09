@@ -27,7 +27,8 @@ class ConfigFactoryTest extends TestCase
 {
     use DeprecatedAssertionsTrait;
 
-    private MockObject&ContainerInterface $container;
+    /** @var MockObject&ContainerInterface */
+    private $container;
     private ConfigFactory $factory;
     protected ?string $fileName = null;
 
