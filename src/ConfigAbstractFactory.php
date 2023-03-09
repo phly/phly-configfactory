@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Phly\ConfigFactory;
 
-use ArrayObject;
-use Interop\Container\ContainerInterface;
+use ArrayAccess;
 use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
+use Psr\Container\ContainerInterface;
 
 use function preg_match;
 
@@ -26,7 +26,7 @@ class ConfigAbstractFactory implements AbstractFactoryInterface
 
     /**
      * @param string $requestedName
-     * @return array|ArrayObject
+     * @return array|ArrayAccess
      * @throws InvalidServiceNameException If $serviceName does not begin with "config-".
      * @throws ConfigKeyNotFoundException If $returnArrayForUnfoundKey is false and the key is not found.
      */

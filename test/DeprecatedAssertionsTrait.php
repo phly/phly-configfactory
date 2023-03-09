@@ -7,7 +7,6 @@ namespace PhlyTest\ConfigFactory;
 use PHPUnit\Framework\Assert;
 use ReflectionProperty;
 
-use function get_class;
 use function sprintf;
 use function var_export;
 
@@ -27,7 +26,7 @@ trait DeprecatedAssertionsTrait
             : sprintf(
                 'Unable to assert that property %s of instance %s with value "%s" is identical to "%s"',
                 $property,
-                get_class($instance),
+                $instance::class,
                 var_export($actual, true),
                 var_export($expected, true)
             );

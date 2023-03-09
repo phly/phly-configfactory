@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace PhlyTest\ConfigFactory;
 
-use Interop\Container\ContainerInterface;
 use Phly\ConfigFactory\ConfigAbstractFactory;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Container\ContainerInterface;
 
 class ConfigAbstractFactoryTest extends TestCase
 {
