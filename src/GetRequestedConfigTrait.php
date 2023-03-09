@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Phly\ConfigFactory;
 
-use ArrayObject;
+use ArrayAccess;
 use Psr\Container\ContainerInterface;
 
 use function array_key_exists;
@@ -20,25 +20,21 @@ use function substr;
 
 trait GetRequestedConfigTrait
 {
-    /** @var bool */
-    private $returnArrayForUnfoundKey;
-
     public static function __set_state(array $properties): self
     {
         return new static($properties['returnArrayForUnfoundKey']);
     }
 
-    public function __construct(bool $returnArrayForUnfoundKey = true)
-    {
-        $this->returnArrayForUnfoundKey = $returnArrayForUnfoundKey;
+    public function __construct(
+        private bool $returnArrayForUnfoundKey = true
+    ) {
     }
 
     /**
-     * @return array|ArrayObject
      * @throws InvalidServiceNameException If $serviceName does not begin with "config-".
      * @throws ConfigKeyNotFoundException If $returnArrayForUnfoundKey is false and the key is not found.
      */
-    private function getRequestedConfig(ContainerInterface $container, string $serviceName)
+    private function getRequestedConfig(ContainerInterface $container, string $serviceName): array|ArrayAccess
     {
         if (! preg_match('/^config-/i', $serviceName)) {
             throw InvalidServiceNameException::forService($serviceName);
@@ -52,10 +48,9 @@ trait GetRequestedConfigTrait
     }
 
     /**
-     * @return array|ArrayObject
      * @throws ConfigKeyNotFoundException If $returnArrayForUnfoundKey is false and the key is not found.
      */
-    private function getConfigForKeys(array $config, array $keys, array $parentKeys = [])
+    private function getConfigForKeys(array $config, array $keys, array $parentKeys = []): array|ArrayAccess
     {
         if (empty($keys)) {
             return $config;

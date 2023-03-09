@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Phly\ConfigFactory;
 
-use ArrayObject;
+use ArrayAccess;
 use Psr\Container\ContainerInterface;
 
 class ConfigFactory
@@ -16,11 +16,10 @@ class ConfigFactory
     use GetRequestedConfigTrait;
 
     /**
-     * @return array|ArrayObject
      * @throws InvalidServiceNameException If $serviceName does not begin with "config-".
      * @throws ConfigKeyNotFoundException If $returnArrayForUnfoundKey is false and the key is not found.
      */
-    public function __invoke(ContainerInterface $container, string $serviceName = '')
+    public function __invoke(ContainerInterface $container, string $serviceName = ''): array|ArrayAccess
     {
         return $this->getRequestedConfig($container, $serviceName);
     }

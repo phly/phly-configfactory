@@ -11,8 +11,8 @@ namespace PhlyTest\ConfigFactory;
 use Phly\ConfigFactory\ConfigFactory;
 use Phly\ConfigFactory\ConfigKeyNotFoundException;
 use Phly\ConfigFactory\InvalidServiceNameException;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Container\ContainerInterface;
 
 use function file_exists;
@@ -26,14 +26,15 @@ use function var_export;
 class ConfigFactoryTest extends TestCase
 {
     use DeprecatedAssertionsTrait;
-    use ProphecyTrait;
 
-    /** @var string */
-    protected $fileName;
+    /** @var MockObject&ContainerInterface */
+    private $container;
+    private ConfigFactory $factory;
+    protected ?string $fileName = null;
 
     public function setUp(): void
     {
-        $this->container = $this->prophesize(ContainerInterface::class);
+        $this->container = $this->createMock(ContainerInterface::class);
         $this->factory   = new ConfigFactory();
     }
 
@@ -41,6 +42,7 @@ class ConfigFactoryTest extends TestCase
     {
         if ($this->fileName && file_exists($this->fileName)) {
             unlink($this->fileName);
+            $this->fileName = null;
         }
     }
 
@@ -77,9 +79,13 @@ class ConfigFactoryTest extends TestCase
 
     public function testRaisesExceptionForInvalidServiceName()
     {
-        $this->container->get('config')->shouldNotBeCalled();
+        $this->container
+            ->expects($this->never())
+            ->method('get')
+            ->with('config');
+
         $this->expectException(InvalidServiceNameException::class);
-        ($this->factory)($this->container->reveal(), 'invalid-name');
+        ($this->factory)($this->container, 'invalid-name');
     }
 
     public function configurationWithoutKey(): iterable
@@ -95,11 +101,16 @@ class ConfigFactoryTest extends TestCase
      */
     public function testRaisesExceptionIfKeyNotFoundInConfigAndFactoryConfiguredToRaiseErrorForUnfoundKey(array $config)
     {
-        $this->container->get('config')->willReturn($config)->shouldBeCalledTimes(1);
+        $this->container
+            ->expects($this->once())
+            ->method('get')
+            ->with('config')
+            ->willReturn($config);
+
         $factory = new ConfigFactory(false);
 
         $this->expectException(ConfigKeyNotFoundException::class);
-        $factory($this->container->reveal(), 'config-first.second.third.fourth');
+        $factory($this->container, 'config-first.second.third.fourth');
     }
 
     /**
@@ -108,10 +119,15 @@ class ConfigFactoryTest extends TestCase
     public function testReturnsEmptyArrayIfKeyNotFoundInConfigAndFactoryConfiguredToRaiseErrorForUnfoundKey(
         array $config
     ) {
-        $this->container->get('config')->willReturn($config)->shouldBeCalledTimes(1);
+        $this->container
+            ->expects($this->once())
+            ->method('get')
+            ->with('config')
+            ->willReturn($config);
+
         $factory = new ConfigFactory(true);
 
-        $config = $factory($this->container->reveal(), 'config-first.second.third.fourth');
+        $config = $factory($this->container, 'config-first.second.third.fourth');
 
         $this->assertEquals([], $config);
     }
@@ -119,7 +135,9 @@ class ConfigFactoryTest extends TestCase
     public function testUsesDotNotationToLocateNestedConfigurationArray()
     {
         $this->container
-            ->get('config')
+            ->expects($this->once())
+            ->method('get')
+            ->with('config')
             ->willReturn([
                 'first' => [
                     'second' => [
@@ -130,11 +148,11 @@ class ConfigFactoryTest extends TestCase
                         ],
                     ],
                 ],
-            ])
-            ->shouldBeCalledTimes(1);
+            ]);
+
         $factory = new ConfigFactory(false);
 
-        $config = $factory($this->container->reveal(), 'config-first.second.third.fourth');
+        $config = $factory($this->container, 'config-first.second.third.fourth');
 
         $this->assertEquals(['some' => 'value'], $config);
     }

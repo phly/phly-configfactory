@@ -8,18 +8,20 @@ declare(strict_types=1);
 
 namespace PhlyTest\ConfigFactory;
 
-use Interop\Container\ContainerInterface;
 use Phly\ConfigFactory\ConfigAbstractFactory;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Container\ContainerInterface;
 
 class ConfigAbstractFactoryTest extends TestCase
 {
-    use ProphecyTrait;
+    /** @var MockObject&ContainerInterface */
+    private $container;
+    private ConfigAbstractFactory $factory;
 
     public function setUp(): void
     {
-        $this->container = $this->prophesize(ContainerInterface::class)->reveal();
+        $this->container = $this->createMock(ContainerInterface::class);
         $this->factory   = new ConfigAbstractFactory();
     }
 
