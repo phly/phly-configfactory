@@ -57,7 +57,7 @@ class ConfigFactoryTest extends TestCase
         $this->assertAttributeSame(false, 'returnArrayForUnfoundKey', $factory);
     }
 
-    public function unfoundKeyStates(): iterable
+    public static function unfoundKeyStates(): iterable
     {
         yield 'allowed' => [true];
         yield 'disallowed' => [false];
@@ -88,7 +88,7 @@ class ConfigFactoryTest extends TestCase
         ($this->factory)($this->container, 'invalid-name');
     }
 
-    public function configurationWithoutKey(): iterable
+    public static function configurationWithoutKey(): iterable
     {
         yield 'empty'            => [[]];
         yield 'first-level-only' => [['first' => []]];
