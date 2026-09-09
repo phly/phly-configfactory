@@ -18,7 +18,6 @@ trait DeprecatedAssertionsTrait
     public function assertAttributeSame($expected, string $property, object $instance, string $message = ''): void
     {
         $r = new ReflectionProperty($instance, $property);
-        $r->setAccessible(true);
         $actual = $r->getValue($instance);
 
         $message = $message !== ''
